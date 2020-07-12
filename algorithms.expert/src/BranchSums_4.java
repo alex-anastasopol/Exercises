@@ -38,8 +38,11 @@ public class BranchSums_4 {
 		if (node.right != null) {
 			index = sums.size() - 1;
 			System.out.println("	will calc right branch; idx: " + index + "; sums.size():" + sums.size());
-			sums.add(rightBaseSum);
-			calculateTreeBranchSums(node.right, sums, index + 1);
+			if (node.left != null) {
+				sums.add(rightBaseSum);
+				index++;
+			}
+			calculateTreeBranchSums(node.right, sums, index);
 		}
 
 		return sums;
@@ -54,21 +57,21 @@ public class BranchSums_4 {
 		System.out.println("       4   5     10  11");
 		System.out.println("      /   / \\   / \\    \\");
 		System.out.println("     3   1   9  5  14   7");
-		
-		//l0
+
+		// l0
 		BinaryTree root = new BinaryTree(1);
-		
-		//l1
+
+		// l1
 		root.left = new BinaryTree(2);
 		root.right = new BinaryTree(3);
-		
-		//l2
+
+		// l2
 		root.left.left = new BinaryTree(4);
 		root.left.right = new BinaryTree(5);
 		root.right.left = new BinaryTree(10);
 		root.right.right = new BinaryTree(11);
-		
-		//l3
+
+		// l3
 		root.left.left.left = new BinaryTree(3);
 		root.left.right.left = new BinaryTree(1);
 		root.left.right.right = new BinaryTree(9);
